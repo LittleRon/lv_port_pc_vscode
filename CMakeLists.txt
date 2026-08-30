@@ -57,6 +57,7 @@ set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 set(WORKING_DIRECTORY ${PROJECT_SOURCE_DIR})
 
 # Find and include SDL2 library
+set(SDL2_DIR ${PROJECT_SOURCE_DIR}/SDL2-2.32.10/cmake)
 find_package(SDL2 REQUIRED)
 
 # Add compile definitions based on the selected options

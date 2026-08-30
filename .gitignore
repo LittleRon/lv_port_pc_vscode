@@ -1,4 +1,4 @@
-# Ignore build folder
+﻿# Ignore build folder
 build/
 bin/
 
@@ -10,3 +10,23 @@ bin/
 
 # MacOS file
 .DS_Store
+
+# Local build artifacts
+*.o
+*.obj
+*.a
+*.lib
+*.dll
+*.exe
+.vs/
+.vscode/
+CMakeCache.txt
+CMakeFiles/
+.ninja_deps
+.ninja_log
+compile_commands.json
+Makefile
+CMakeCache.txt
+lvglConfig.cmake
+lvglConfigDebug.cmake
+
