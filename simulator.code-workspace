@@ -21,6 +21,10 @@
 	// settings.json section
 	"settings": {
 		"cmake.cmakePath": "E:\\ProgramFiles\\CMake\\bin\\cmake",
+		"cmake.configureSettings": {
+  			"CMAKE_C_COMPILER": "${env:MINGW_ROOT}/bin/gcc.exe",
+ 		 	"CMAKE_CXX_COMPILER": "${env:MINGW_ROOT}/bin/g++.exe"
+		},
 		"files.trimTrailingWhitespace": true,
 		"files.insertFinalNewline": true,
 		"files.trimFinalNewlines": true,

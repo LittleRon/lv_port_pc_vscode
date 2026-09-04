@@ -68,7 +68,16 @@ add_compile_definitions($<$<BOOL:${LV_USE_FFMPEG}>:LV_USE_FFMPEG=1>)
 
 # Add LVGL subdirectory
 add_subdirectory(lvgl)
-target_include_directories(lvgl PUBLIC ${PROJECT_SOURCE_DIR} ${SDL2_INCLUDE_DIRS})
+target_include_directories(lvgl PRIVATE ${PROJECT_SOURCE_DIR} ${SDL2_INCLUDE_DIRS})
+
+# SDL include path is required by SDL-dependent examples/demos and the main app.
+# Add it only as PRIVATE include dirs to avoid leaking source-tree paths into lvgl's
+# interface include list used by install/export steps.
+foreach(_lvgl_target IN ITEMS lvgl_examples lvgl_demos)
+    if(TARGET ${_lvgl_target})
+        target_include_directories(${_lvgl_target} PRIVATE ${SDL2_INCLUDE_DIRS})
+    endif()
+endforeach()
 
 set(MAIN_SOURCES src/mouse_cursor_icon.c src/hal/hal.c)
 set(MAIN_LIBS lvgl lvgl::examples lvgl::demos lvgl::thorvg ${SDL2_LIBRARIES})
@@ -90,24 +99,24 @@ endif()
 add_custom_target(run COMMAND ${EXECUTABLE_OUTPUT_PATH}/main DEPENDS main)
 
 # Conditionally include and link SDL2_image if LV_USE_DRAW_SDL is enabled
-if(LV_USE_DRAW_SDL)
+    if(LV_USE_DRAW_SDL)
     set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake")
     find_package(SDL2_image REQUIRED)
-    target_include_directories(lvgl PUBLIC ${SDL2_IMAGE_INCLUDE_DIRS})
+    target_include_directories(lvgl PRIVATE ${SDL2_IMAGE_INCLUDE_DIRS})
     list(APPEND MAIN_LIBS ${SDL2_IMAGE_LIBRARIES})
 endif()
 
 # Conditionally include and link libpng if LV_USE_LIBPNG is enabled
 if(LV_USE_LIBPNG)
     find_package(PNG REQUIRED)
-    target_include_directories(lvgl PUBLIC ${PNG_INCLUDE_DIRS})
+    target_include_directories(lvgl PRIVATE ${PNG_INCLUDE_DIRS})
     list(APPEND MAIN_LIBS ${PNG_LIBRARIES})
 endif()
 
 # Conditionally include and link libjpeg-turbo if LV_USE_LIBJPEG_TURBO is enabled
 if(LV_USE_LIBJPEG_TURBO)
     find_package(JPEG REQUIRED)
-    target_include_directories(lvgl PUBLIC ${JPEG_INCLUDE_DIRS})
+    target_include_directories(lvgl PRIVATE ${JPEG_INCLUDE_DIRS})
     list(APPEND MAIN_LIBS ${JPEG_LIBRARIES})
 endif()
 
@@ -119,7 +128,7 @@ endif()
 # Conditionally include and link FreeType if LV_USE_FREETYPE is enabled
 if(LV_USE_FREETYPE)
     find_package(Freetype REQUIRED)
-    target_include_directories(lvgl PUBLIC ${FREETYPE_INCLUDE_DIRS})
+    target_include_directories(lvgl PRIVATE ${FREETYPE_INCLUDE_DIRS})
     list(APPEND MAIN_LIBS ${FREETYPE_LIBRARIES})
 endif()
 
@@ -145,6 +154,7 @@ endif()
 add_executable(main ${MAIN_SOURCES})
 target_compile_definitions(main PRIVATE LV_CONF_INCLUDE_SIMPLE)
 target_link_libraries(main ${MAIN_LIBS})
+target_include_directories(main PRIVATE ${SDL2_INCLUDE_DIRS})
 
 # On Windows, GUI applications do not show a console by default,
 # which hides log output. This ensures a console is available for logging.
