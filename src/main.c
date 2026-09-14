@@ -65,11 +65,26 @@ int main(int argc, char **argv)
 
   /* Run the default demo */
   /* To try a different demo or example, replace this with one of: */
-  /* - lv_demo_benchmark(); */
-  /* - lv_demo_stress(); */
-  /* - lv_example_label_1(); */
+  lv_demo_benchmark();
+  // lv_demo_stress();
+  // lv_example_label_1();
   /* - etc. */
-  lv_demo_widgets();
+  /* lv_demo_widgets(); */
+
+
+  /* Test the customized demo */
+  //1. Get the whole screen of the device
+  /* lv_obj_t * scr = lv_screen_active();
+  //2. Create a new object on the screen
+  lv_obj_t * demo = lv_obj_create(scr);
+  //3. Create a button
+  lv_obj_t * btn = lv_button_create(demo);
+  //4. Set the button size and position
+  lv_obj_set_size(btn, 100, 50);
+  lv_obj_align(btn, LV_ALIGN_CENTER, 0, 0); */
+
+
+
 
   while(1) {
     /* Periodically call the lv_task handler.

@@ -2268,7 +2268,7 @@
 #define LV_USE_ASSERT_MEM_INTEGRITY 0
 
 /** Widget validity checks (slow) */
-#define LV_USE_ASSERT_OBJ 1
+#define LV_USE_ASSERT_OBJ 0
 
 /** Disable warning saying `LV_ASSERT_HANDLER_INCLUDE` is deprecated.
  *  This setting allows you to keep using old LVGL versions which rely on
