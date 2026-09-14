@@ -90,6 +90,9 @@ else()
     list(APPEND MAIN_SOURCES src/main.c)
 endif()
 
+# Add the ui library
+list(APPEND MAIN_SOURCES src/ui/ui.c)
+
 
 if(NOT MSVC)
     list(APPEND MAIN_LIBS m pthread)
