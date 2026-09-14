@@ -99,12 +99,13 @@ endif()
 add_custom_target(run COMMAND ${EXECUTABLE_OUTPUT_PATH}/main DEPENDS main)
 
 # Conditionally include and link SDL2_image if LV_USE_DRAW_SDL is enabled
-    if(LV_USE_DRAW_SDL)
-    set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake")
-    find_package(SDL2_image REQUIRED)
-    target_include_directories(lvgl PRIVATE ${SDL2_IMAGE_INCLUDE_DIRS})
-    list(APPEND MAIN_LIBS ${SDL2_IMAGE_LIBRARIES})
-endif()
+# SDL2_image is not required for LVGL SDL draw backend.
+#     if(LV_USE_DRAW_SDL)
+#     set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake")
+#     find_package(SDL2_image REQUIRED)
+#     target_include_directories(lvgl PRIVATE ${SDL2_IMAGE_INCLUDE_DIRS})
+#     list(APPEND MAIN_LIBS ${SDL2_IMAGE_LIBRARIES})
+# endif()
 
 # Conditionally include and link libpng if LV_USE_LIBPNG is enabled
 if(LV_USE_LIBPNG)

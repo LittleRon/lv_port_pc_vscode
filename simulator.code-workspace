@@ -20,7 +20,7 @@
 	},
 	// settings.json section
 	"settings": {
-		"cmake.cmakePath": "E:\\Program Files\\CMake\\bin\\cmake",
+		"cmake.cmakePath": "E:\\ProgramFiles\\CMake\\bin\\cmake",
 		"cmake.configureSettings": {
   			"CMAKE_C_COMPILER": "${env:MINGW_ROOT}/bin/gcc.exe",
  		 	"CMAKE_CXX_COMPILER": "${env:MINGW_ROOT}/bin/g++.exe"
