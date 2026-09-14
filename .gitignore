@@ -1,5 +1,8 @@
 ﻿# Ignore build folder
 build/
+FreeRTOS/
+lvgl/
+SDL2-2.32.2.10/
 
 # Ignore all dot folders, with below exceptions
 .*/
