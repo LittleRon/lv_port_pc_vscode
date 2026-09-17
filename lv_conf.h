@@ -128,7 +128,7 @@
  *============================================================================*/
 
 /** Color depth: 1 (I1), 8 (L8), 16 (RGB565), 24 (RGB888), 32 (XRGB8888) */
-#define LV_COLOR_DEPTH 32
+#define LV_COLOR_DEPTH 16
 
 /** 0: no adjustment, get the integer part of the result (round down)
  *  64: round up from x.75
@@ -139,7 +139,7 @@
 #define LV_COLOR_MIX_ROUND_OFS 0
 
 /** Default display refresh, input device read and animation step period. */
-#define LV_DEF_REFR_PERIOD 33
+#define LV_DEF_REFR_PERIOD 16
 
 /** Used to initialize default sizes such as widget sizes and style paddings. */
 #define LV_DPI_DEF 130
@@ -610,7 +610,7 @@
 #endif /*LV_USE_DRAW_OPENGLES*/
 
 /** Render with the SDL renderer API, caching widgets and images as SDL textures. */
-#define LV_USE_DRAW_SDL 0
+#define LV_USE_DRAW_SDL 1
 
 
 
@@ -1713,7 +1713,7 @@
  *  - LV_SDL_BACKEND_TEXTURE: Cached SDL textures (enable: LV_USE_DRAW_SDL)
  *  - LV_SDL_BACKEND_EGL: EGL (OpenGL ES, hardware-accelerated) (requires LV_USE_DRAW_OPENGLES || LV_USE_DRAW_NANOVG)
  */
-#define LV_SDL_BACKEND LV_SDL_BACKEND_SW
+#define LV_SDL_BACKEND LV_SDL_BACKEND_TEXTURE
 
 /** Direct mode is recommended for best performance.
  *  Possible values:
@@ -1724,7 +1724,7 @@
 #define LV_SDL_RENDER_MODE LV_DISPLAY_RENDER_MODE_DIRECT
 
 /** Number of screen-sized buffers */
-#define LV_SDL_BUF_COUNT 1
+#define LV_SDL_BUF_COUNT 2
 
 /** Ask SDL for a GPU-backed renderer instead of a software one. */
 #define LV_SDL_ACCELERATED 1
@@ -1990,7 +1990,7 @@
 #define LV_SYSMON_PROC_IDLE_AVAILABLE 0
 
 /** Show the CPU usage and FPS count in a label on the screen. */
-#define LV_USE_PERF_MONITOR 0
+#define LV_USE_PERF_MONITOR 1
 
 #if LV_USE_PERF_MONITOR
 /** Performance monitor position
@@ -2014,7 +2014,7 @@
 
 #if LV_USE_STDLIB_MALLOC == LV_STDLIB_BUILTIN
 /** Show the used memory and the memory fragmentation in a label on the screen. */
-#define LV_USE_MEM_MONITOR 0
+#define LV_USE_MEM_MONITOR 1
 
 #endif /*LV_USE_STDLIB_MALLOC == LV_STDLIB_BUILTIN*/
 
@@ -2265,10 +2265,10 @@
 #define LV_USE_ASSERT_STYLE 1
 
 /** lv_mem integrity checks (slow) */
-#define LV_USE_ASSERT_MEM_INTEGRITY 1
+#define LV_USE_ASSERT_MEM_INTEGRITY 0
 
 /** Widget validity checks (slow) */
-#define LV_USE_ASSERT_OBJ 1
+#define LV_USE_ASSERT_OBJ 0
 
 /** Disable warning saying `LV_ASSERT_HANDLER_INCLUDE` is deprecated.
  *  This setting allows you to keep using old LVGL versions which rely on
